@@ -1,0 +1,25 @@
+class Solution {
+    int ans = 0;
+    public int count(List<Integer> list) {
+        int xor = 0;
+        for(int x : list) {
+            xor ^= x;
+        }
+        return xor;
+    }
+    public void subsets(int index , List<Integer> list , int[] nums) {
+        if(index == nums.length) {
+            ans += count(list);
+            return;
+        }
+        list.add(nums[index]);
+        subsets(index + 1 , list , nums);
+        list.remove(list.size() - 1);
+        subsets(index + 1 , list , nums);
+    }
+    public int subsetXORSum(int[] nums) {
+        List<Integer> list = new ArrayList<>();
+        subsets(0 , list , nums);
+        return ans;
+    }
+}
