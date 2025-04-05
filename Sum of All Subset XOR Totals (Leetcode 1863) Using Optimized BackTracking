@@ -1,0 +1,15 @@
+class Solution {
+    public int subsets(int index , int xor , int[] nums) {
+        if(index == nums.length) {
+            return xor;
+        }
+        int take =    subsets(index + 1 , xor ^ nums[index] , nums);
+        int nottake = subsets(index + 1 , xor , nums);
+
+        return take + nottake;
+    }
+    public int subsetXORSum(int[] nums) {
+        int xor = 0;
+        return subsets(0 , 0 , nums);
+    }
+}
